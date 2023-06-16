@@ -68,5 +68,7 @@ function gameLoop(){
         console.log("You lost lmaooo, ur trash kid ")
     }
 }
-
-gameLoop()
+window.onload=function(){
+    var btn = document.getElementById("startBtn")
+    btn.addEventListener("click", gameLoop)
+}
