@@ -1,3 +1,7 @@
+/**
+ * Returns a random choice between rock, paper, scissors
+ * @returns {string} either "ROCK" "PAPER" or "SCISSOR"
+ */
 function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3)
     switch (compChoice) {
@@ -9,7 +13,12 @@ function getComputerChoice() {
             return "SCISSOR"
     }
 }
-
+/**
+ * Plays a round of rps, comparing player's choice to computer's choice
+ * @param {string} player - player's choice of r, p or s
+ * @param {string} comp - computer's choice, randomly generated
+ * @returns 0, 1, or 2, for win, lose, draw
+ */
 function playRound(player, comp) {
     if (player === "ROCK" && comp === "SCISSOR") {
         return 0
@@ -28,6 +37,10 @@ function playRound(player, comp) {
     }
 }
 
+
+/**
+ * game loop for rps, first to 5 wins wins the game. Prints results to the console
+ */
 function gameLoop(){
     
     let playerCount = 0
