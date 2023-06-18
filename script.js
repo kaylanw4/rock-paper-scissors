@@ -6,11 +6,11 @@ function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3)
     switch (compChoice) {
         case 0:
-            return "ROCK"
+            return "rock"
         case 1:
-            return "PAPER"
+            return "paper"
         case 2:
-            return "SCISSOR"
+            return "scissor"
     }
 }
 /**
@@ -19,21 +19,25 @@ function getComputerChoice() {
  * @param {string} comp - computer's choice, randomly generated
  * @returns 0, 1, or 2, for win, lose, draw
  */
-function playRound(player, comp) {
-    if (player === "ROCK" && comp === "SCISSOR") {
-        return 0
-    } else if (player === "ROCK" && comp === "PAPER") {
-        return 1
-    } else if (player === "PAPER" && comp === "ROCK") {
-        return 0
-    } else if (player === "PAPER" && comp === "SCISSOR") {
-        return 1
-    } else if (player === "SCISSOR" && comp === "PAPER") {
-        return 0
-    } else if (player === "SCISSOR" && comp === "ROCK") {
-        return 1
+function playRound(e) {
+    let comp = getComputerChoice()
+    let player = e.srcElement.className
+    const win = `You Win! ${player} beats ${comp}`
+    const lose = `You Lost :( ${comp} beats ${player}`
+    if (player === "rock" && comp === "scissor") {
+        console.log(win)
+    } else if (player === "rock" && comp === "paper") {
+        console.log(lose)
+    } else if (player === "paper" && comp === "rock") {
+        console.log(win)
+    } else if (player === "paper" && comp === "scissor") {
+        console.log(lose)
+    } else if (player === "scissor" && comp === "paper") {
+        console.log(win)
+    } else if (player === "scissor" && comp === "rock") {
+        console.log(lose)
     } else {
-        return 2
+        console.log("Tie")
     }
 }
 
@@ -41,6 +45,7 @@ function playRound(player, comp) {
 /**
  * game loop for rps, first to 5 wins wins the game. Prints results to the console
  */
+/*
 function gameLoop(){
     
     let playerCount = 0
@@ -81,7 +86,8 @@ function gameLoop(){
         console.log("You lost lmaooo, ur trash kid ")
     }
 }
-window.onload=function(){
-    var btn = document.getElementById("startBtn")
-    btn.addEventListener("click", gameLoop)
-}
+
+*/
+
+const btns = document.querySelectorAll("button")
+btns.forEach(btn => btn.addEventListener('click', playRound))
