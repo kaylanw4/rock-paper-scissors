@@ -106,7 +106,13 @@ function getScore(result) {
  * Displays the final results of the match, gives option to restart
  */
 function restart() {
-    
-    console.log("hello")
+    playerScore = 0
+    compScore = 0
+    results.removeChild(restartBtn)
+    for(let child = results.firstChild; child !== null; child = child.nextSibling){
+        child.textContent = ""
+    }
+    btns.forEach(btn => btn.addEventListener('click', playRound))
+
     
 }
