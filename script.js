@@ -1,3 +1,12 @@
+
+
+const btns = document.querySelectorAll("button")
+btns.forEach(btn => btn.addEventListener('click', playRound))
+
+const results = document.querySelector("#results")
+const p = document.createElement('p');
+results.appendChild(p)
+
 /**
  * Returns a random choice between rock, paper, scissors
  * @returns {string} either "ROCK" "PAPER" or "SCISSOR"
@@ -15,79 +24,28 @@ function getComputerChoice() {
 }
 /**
  * Plays a round of rps, comparing player's choice to computer's choice
- * @param {string} player - player's choice of r, p or s
- * @param {string} comp - computer's choice, randomly generated
- * @returns 0, 1, or 2, for win, lose, draw
+ * Displays the results of the round along with a running tally
  */
 function playRound(e) {
     let comp = getComputerChoice()
     let player = e.srcElement.className
-    const win = `You Win! ${player} beats ${comp}`
-    const lose = `You Lost :( ${comp} beats ${player}`
+
+    let win = `You Win! ${player} beats ${comp}`
+    let lose = `You Lost :( ${comp} beats ${player}`
+
     if (player === "rock" && comp === "scissor") {
-        console.log(win)
+        p.textContent = win
     } else if (player === "rock" && comp === "paper") {
-        console.log(lose)
+        p.textContent = lose
     } else if (player === "paper" && comp === "rock") {
-        console.log(win)
+        p.textContent = win
     } else if (player === "paper" && comp === "scissor") {
-        console.log(lose)
+        p.textContent = lose
     } else if (player === "scissor" && comp === "paper") {
-        console.log(win)
+        p.textContent = win
     } else if (player === "scissor" && comp === "rock") {
-        console.log(lose)
+        p.textContent = lose
     } else {
-        console.log("Tie")
+        p.textContent = "Tie"
     }
 }
-
-
-/**
- * game loop for rps, first to 5 wins wins the game. Prints results to the console
- */
-/*
-function gameLoop(){
-    
-    let playerCount = 0
-    let compCount = 0
-    let compSelection
-
-    while (playerCount < 5 && compCount < 5){
-        let playerSelection = prompt("Enter rock, paper, or scissor:")
-        const playerSelection1 = playerSelection.toUpperCase().trim()
-        compSelection = getComputerChoice()
-        const win = `You Win! ${playerSelection1} beats ${compSelection}`
-        const lose = `You Lost :( ${compSelection} beats ${playerSelection1}`
-
-        if (playerSelection1 === "ROCK" ||
-            playerSelection1 === "PAPER" ||
-            playerSelection1 === "SCISSOR"
-        ) {
-            let gameResult = playRound(playerSelection1, compSelection)
-            if (gameResult === 0){
-                console.log(win)
-                console.log(`Current score: Player: ${++playerCount} Computer: ${compCount}`)
-            } else if (gameResult === 1) {
-                console.log(lose)
-                console.log(`Current score: Player: ${playerCount} Computer: ${++compCount}`)
-            } else {
-                console.log("Tie")
-                console.log(`Current score: Player: ${playerCount} Computer: ${compCount}`)
-            }
-        } else {
-            console.error("Invalid Input. Try again")
-            continue
-        }
-
-    }
-    if (playerCount > compCount) {
-        console.log("You beat the computer! You must've gotten lucky...")
-    } else {
-        console.log("You lost lmaooo, ur trash kid ")
-    }
-}
-
-*/
-
-const btns = document.querySelectorAll("button")
-btns.forEach(btn => btn.addEventListener('click', playRound))
