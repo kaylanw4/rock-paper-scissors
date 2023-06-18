@@ -15,6 +15,13 @@ results.appendChild(p)
 const score = document.createElement('p')
 results.appendChild(score)
 
+// add final result
+const final = document.createElement('p')
+results.appendChild(final)
+
+const restartBtn = document.createElement('button')
+restartBtn.textContent = 'Restart'
+restartBtn.addEventListener('click', restart)
 // initialize global variables
 let playerScore = 0
 let compScore = 0
@@ -70,10 +77,11 @@ function playRound(e) {
     }
 }
 
+/**
+ * gets the result of a round and displays it to the webpage
+ * @param {int} result - 0, 1, or 2 for win, lose, or draw.
+ */
 function getScore(result) {
-    
-// let currScore = `Player: ${playerScore} Computer: ${compScore}`
-
     if (result === 0){
         playerScore++
         score.textContent = `Player: ${playerScore} Computer: ${compScore}`
@@ -83,4 +91,22 @@ function getScore(result) {
     } else {
         score.textContent = `Player: ${playerScore} Computer: ${compScore}`
     }
+    if (playerScore === 5 || compScore === 5) {
+        if (playerScore > compScore) {
+            final.textContent = `You won... this game is all luck. Final score: ${playerScore} - ${compScore}`
+        } else {
+            final.textContent = `You lost ur so bad lmaoo. Final score: ${playerScore} - ${compScore}`
+        }
+        btns.forEach(btn => btn.removeEventListener('click', playRound))
+        results.appendChild(restartBtn)
+    }
+}
+
+/**
+ * Displays the final results of the match, gives option to restart
+ */
+function restart() {
+    
+    console.log("hello")
+    
 }
